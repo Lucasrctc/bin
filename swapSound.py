@@ -1,4 +1,7 @@
 #!/bin/python3
+
+#IMPORTANT: For this setup to work, you need automute on alsamixer disabled. just run 'alsamixer' then scroll right until you find the automute option.
+
 import subprocess
 
 ports = subprocess.run(["pactl", "list", "sinks"], capture_output = True)
@@ -23,13 +26,15 @@ for i, txt in enumerate(ports):
         end = i + 1
 
 ports = ports[begin:end]
-# Select text after : and remove whitespaces
-ports = [''.join(i[:i.find(":")]).split()[0] for i in ports if ":" in i]
 
 # Active port line is the last, so remove from ports list (active port is still in the list after)
 activePort = ports[-1]
 activePort = activePort[activePort.find(":") + 2:]
 ports = ports[:-1]
+
+# Select text after : and remove whitespaces
+ports = [''.join(i[:i.find(":")]).split()[0] for i in ports if ":" in i]
+
 
 #print("Active: ", activePort)
 #print("Ports: ", ports)
