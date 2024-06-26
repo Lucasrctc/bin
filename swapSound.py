@@ -52,6 +52,10 @@ cmd = ["pactl", "set-sink-port", sinkName, ports[i]]
 #print(cmd)
 subprocess.run(cmd)
 
+# Lower and raise volume to trigger gnome sound osd
+cmd = "xdotool key XF86AudioLowerVolume XF86AudioRaiseVolume".split()
+subprocess.run(cmd)
+
 #|grep \*|cut -c 12")
 
 #begin = end = cur = 0
