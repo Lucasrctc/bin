@@ -16,13 +16,13 @@ end = 0
 for i, txt in enumerate(ports):
     #print(txt)
     # Find sink name
-    if "Name:" in txt:
+    if "Name:" in txt and sinkName == "":
         sinkName = txt[txt.find(": ") + 2:]
         #print(sinkName)
     # Find substring with port, active port info
-    if "Ports" in txt:
+    if "Ports" in txt and begin == 0:
         begin = i + 1
-    if "Active Port" in txt:
+    if "Active Port" in txt and end == 0:
         end = i + 1
 
 ports = ports[begin:end]
