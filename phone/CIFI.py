@@ -82,4 +82,4 @@ for i in range(1000):
     #Fast_Reset(25+33+43+255)    
     temp = GetColorAtPixel(*coords["Loop Wheel"])
     print(temp, sum(temp))
-    Long_Reset(393)    
+    #Long_Reset(393)    
