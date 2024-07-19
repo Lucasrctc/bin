@@ -1,8 +1,4 @@
-from subprocess import call
-from subprocess import check_output
-from PIL import Image
-import time
-import sys
+from gameLib import *
 
 coords = {  
             "upgrade" : [(a, b) for b in [330 + 150*j for j in range(3)] for a in [2750 + 250 * i for i in range(4)]],
@@ -13,6 +9,7 @@ coords = {
             "catch_fish" : (2680, 760),
             #"catch_fish" : (125, 760),
             "tar_pit" : (2650, 90),
+            "dep_all" : (4400, 400),
         }
 
 def co(s):
@@ -33,7 +30,7 @@ def idle(delta, minidelta = .3, counter = 0):
     if (counter%10 == 0 or True):
         print("Check shinies")
         cmd = ("xdotool search --name Legends windowfocus --sync mousemove --sync %s %s click 1 mousemove restore windowfocus %s"%(*coords["shiny_fish"], wid)).split()
-        call(cmd)
+        #call(cmd)
 
         time.sleep(minidelta)
 
@@ -64,8 +61,6 @@ def idle(delta, minidelta = .3, counter = 0):
     #call(cmd)
 
     time.sleep(delta)
-
-
 
 def Screenshot():
     call(["rm", "screen.png"])
@@ -196,5 +191,10 @@ def testClassify():
 i = 0
 while True:
     print(i)
-    idle(30, counter = i)
+    #idle(1, counter = i)
+    cmd = "xdotool getwindowfocus".split()
+    wid = int(co(cmd))
+    cmd = ("xdotool search --name Legends windowfocus --sync mousemove --sync %s %s click 1 mousemove restore windowfocus %s"%(*coords["dep_all"], wid)).split()
+    call(cmd)
+    time.sleep(15)
     i += 1
