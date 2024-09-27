@@ -2,6 +2,7 @@ echo "start"
 sleep 3
 for i in {1..50}; do
 	echo $i
+	sleep .1
 	xdotool key c
 	sleep .5
 	xdotool mousemove 3100 500 click 1 mousemove restore
